@@ -57,9 +57,9 @@ func operation() {
 	}
 	if inputValue == 3 {
 		fmt.Printf("How much do you want to withdraw? \n")
-		_, err2 := fmt.Scan(&withdrawAmt)
-		if err2 != nil {
-			log.Fatal(err2)
+		_, err = fmt.Scan(&withdrawAmt)
+		if err != nil {
+			log.Fatal(err)
 		}
 		balance -= withdrawAmt
 		saveBalanceToFile(balance)
