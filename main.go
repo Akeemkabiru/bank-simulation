@@ -14,36 +14,36 @@ func saveBalanceToFile(balance float64) {
 	}
 }
 
-func readBalanceFromFile() {
+func readBalanceFromFile() float64 {
 	balanceByte, err := os.ReadFile("balance.txt")
 	if err != nil {
 		log.Fatal(err)
 	}
 	floatValue, err := strconv.ParseFloat(string(balanceByte), 64)
-	fmt.Println(floatValue)
+	return floatValue
 }
 
 func main() {
 	fmt.Println("Welcome to bank! \nwhat do you want to do?")
 
 	fmt.Printf("\nInput: \n 1 to check your balance \n 2 to deposit \n 3 to withdraw \n")
-	operation()
+	for i := 0; i < 1000; i++ {
+		operation()
+	}
 
 }
 
 // bank operations
 func operation() {
-	var balance float64 = 1000
-	var depositAmt float64
-	var withdrawAmt float64
-	var inputValue int
+	balanceFromFile := readBalanceFromFile()
+	var balance, depositAmt, withdrawAmt, inputValue float64
+	saveBalanceToFile(balance)
 	_, err := fmt.Scan(&inputValue)
 	if err != nil {
 		log.Fatal(err)
 	}
-	saveBalanceToFile(balance)
 	if inputValue == 1 {
-		fmt.Printf("Your balance is: %v \n", balance)
+		fmt.Printf("Your balance is: %v \n", balanceFromFile)
 	}
 	if inputValue == 2 {
 		fmt.Printf("How much do you want to deposit? \n")
@@ -51,9 +51,8 @@ func operation() {
 		if err != nil {
 			log.Fatal(err)
 		}
-		balance += depositAmt
-		saveBalanceToFile(balance)
-		fmt.Printf("Your new balance is: %v \n", balance)
+		balanceFromFile += depositAmt
+		fmt.Printf("Your new balance is: %v \n", balanceFromFile)
 	}
 	if inputValue == 3 {
 		fmt.Printf("How much do you want to withdraw? \n")
@@ -62,7 +61,6 @@ func operation() {
 			log.Fatal(err)
 		}
 		balance -= withdrawAmt
-		saveBalanceToFile(balance)
-		fmt.Printf("Your new balance is %v \n", balance)
+		fmt.Printf("Your new balance is %v \n", balanceFromFile)
 	}
 }
