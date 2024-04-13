@@ -2,16 +2,22 @@ package main
 
 import (
 	"fmt"
+	"github.com/Pallinder/go-randomdata"
 	"github.com/akeemkabiru/bank-simulation/fileop"
 	"log"
 )
 
 const fileName string = "balance.txt"
 
-func main(){
+func main() {
 
 	fmt.Println("Welcome to bank!\nwhat do you want to?")
-	
+
+	// generating randomdata package
+	fmt.Println(randomdata.Day())
+	fmt.Println(randomdata.FullName(randomdata.Male))
+	//
+
 	balance := fileop.ReadFile(fileName)
 	fileop.WriteFile(fileName, balance)
 

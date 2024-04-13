@@ -4,6 +4,7 @@ go 1.22
 
 require (
 	cloud.google.com/go/compute v1.3.0 // indirect
+	github.com/Pallinder/go-randomdata v1.2.0 // indirect
 	github.com/armon/go-metrics v0.3.9 // indirect
 	github.com/armon/go-radix v1.0.0 // indirect
 	github.com/aws/aws-sdk-go v1.43.9 // indirect
