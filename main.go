@@ -3,7 +3,7 @@ package main
 import (
 	"fmt"
 	"github.com/Pallinder/go-randomdata"
-	"github.com/akeemkabiru/bank-simulation/fileop"
+	"github.com/akeemkabiru/fileop"
 	"log"
 )
 
@@ -13,13 +13,13 @@ func main() {
 
 	fmt.Println("Welcome to bank!\nwhat do you want to?")
 
-	// generating randomdata package
 	fmt.Println(randomdata.Day())
-	fmt.Println(randomdata.FullName(randomdata.Male))
-	//
 
-	balance := fileop.ReadFile(fileName)
-	fileop.WriteFile(fileName, balance)
+	fmt.Println(randomdata.FullName(randomdata.Male))
+
+	balance := fileop.ReadFromFile(fileName)
+
+	fileop.WriteFloatToFile(fileName, balance)
 
 	for i := 0; i < 1000; i++ {
 
