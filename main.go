@@ -8,12 +8,11 @@ import (
 
 const fileName string = "balance.txt"
 
-func main() {
+func main(){
 
-	fmt.Println("Welcome to bank!\nwhat do you want to do?")
-
+	fmt.Println("Welcome to bank!\nwhat do you want to?")
+	
 	balance := fileop.ReadFile(fileName)
-
 	fileop.WriteFile(fileName, balance)
 
 	for i := 0; i < 1000; i++ {
