@@ -2,9 +2,8 @@ package main
 
 import (
 	"fmt"
+	"github.com/akeemkabiru/bank-simulation/fileop"
 	"log"
-	"os"
-	"strconv"
 )
 
 const fileName string = "balance.txt"
@@ -13,8 +12,9 @@ func main() {
 
 	fmt.Println("Welcome to bank!\nwhat do you want to do?")
 
-	balance := readFile()
-	writeFile(balance)
+	balance := fileop.ReadFile(fileName)
+
+	fileop.WriteFile(fileName, balance)
 
 	for i := 0; i < 1000; i++ {
 
@@ -52,20 +52,4 @@ func main() {
 			fmt.Printf("Your new balance is %v \n", balance)
 		}
 	}
-}
-
-func writeFile(balance float64) {
-	err := os.WriteFile(fileName, []byte(fmt.Sprintf("%v", balance)), 0644)
-	if err != nil {
-		log.Fatal(err)
-	}
-}
-
-func readFile() float64 {
-	data, err := os.ReadFile(fileName)
-	if err != nil {
-		log.Fatal(err)
-	}
-	value, err := strconv.ParseFloat(string(data), 64)
-	return value
 }
