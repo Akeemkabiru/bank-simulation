@@ -23,7 +23,7 @@ func main() {
 
 	for i := 0; i < 1000; i++ {
 
-		fmt.Printf("\nInput: \n1 to check your balance\n 2 to deposit\n 3 to withdraw\n")
+		fmt.Printf("\nInput: \n 1 to check your balance\n 2 to deposit\n 3 to withdraw\n 4 to exit \n")
 
 		var depositAmt, withdrawAmt, inputValue float64
 
@@ -56,5 +56,9 @@ func main() {
 			balance -= withdrawAmt
 			fmt.Printf("Your new balance is %v \n", balance)
 		}
+		if inputValue == 4 {
+			return
+		}
+
 	}
 }
