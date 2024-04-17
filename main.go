@@ -60,5 +60,19 @@ func main() {
 			return
 		}
 
+		//Pointers
+		age := 32
+		var agePointer *int
+		agePointer = &age
+
+		fmt.Println(age)
+		fmt.Println(getAdultYear(*agePointer))
+		fmt.Println(age)
+
 	}
+}
+
+// a copy of age is created
+func getAdultYear(age int) int {
+	return age + 20
 }
