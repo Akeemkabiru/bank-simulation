@@ -5,9 +5,29 @@ import (
 	"github.com/Pallinder/go-randomdata"
 	"github.com/akeemkabiru/fileop"
 	"log"
+	"time"
 )
 
+// custom types in go
+type customTypes string
+
+//custom types can be created with upper case letter,
+//this shows the availability in other files withing the package but small letter declaration will not be available
+//in other files
+
+type User struct {
+	FirstName string
+	LastName  string
+	BirthDay  int
+}
+
 const fileName string = "balance.txt"
+
+var newUser = User{
+	FirstName: "Akeem",
+	LastName:  "Kabiru",
+	BirthDay:  time.Now().Year(),
+}
 
 func main() {
 
@@ -62,17 +82,14 @@ func main() {
 
 		//Pointers
 		age := 32
-		var agePointer *int
-		agePointer = &age
-
-		fmt.Println(age)
-		fmt.Println(getAdultYear(*agePointer))
+		fmt.Println(*&age)
+		getAdultYear(&age) //age pointer will passed into the function
 		fmt.Println(age)
 
 	}
 }
 
 // a copy of age is created
-func getAdultYear(age int) int {
-	return age + 20
+func getAdultYear(age *int) { //shows that we need pointer to the age
+	*age += 20
 }
