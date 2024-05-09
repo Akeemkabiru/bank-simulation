@@ -2,10 +2,7 @@ module github.com/akeemkabiru/bank-simulation
 
 go 1.22.1
 
-require (
-	github.com/Pallinder/go-randomdata v1.2.0
-	github.com/akeemkabiru/fileop v0.0.0-20240413173532-a623aca988f4
-)
+require github.com/Pallinder/go-randomdata v1.2.0
 
 require (
 	cloud.google.com/go/compute v1.3.0 // indirect
@@ -39,6 +36,7 @@ require (
 	github.com/hashicorp/vault/sdk v0.4.1 // indirect
 	github.com/hashicorp/yamux v0.0.0-20180604194846-3520598351bb // indirect
 	github.com/jmespath/go-jmespath v0.4.0 // indirect
+	github.com/kabbythegreat/fileop v0.0.0-20240507194419-83cc46150fa6 // indirect
 	github.com/mattn/go-colorable v0.1.6 // indirect
 	github.com/mattn/go-isatty v0.0.12 // indirect
 	github.com/mitchellh/copystructure v1.0.0 // indirect

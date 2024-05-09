@@ -1,8 +1,7 @@
 package main
 
-type UserTransaction struct {
-	WithdrawAmt float64 `json:"withdrawAmt"`
-	DepositAmt  float64 `json:"depositAmt"`
-}
+import "github.com/kabbythegreat/fileop"
 
-func main() {}
+func main() {
+	fileop.WriteFileWithValue("file.json", "This is a new file")
+}
