@@ -4,6 +4,8 @@ import (
 	"bufio"
 	"errors"
 	"fmt"
+	"github.com/Pallinder/go-randomdata"
+	"log"
 	"os"
 	"strings"
 	"time"
@@ -14,13 +16,18 @@ type transactionType map[time.Time]string
 type User struct {
 	Firstname     string          `json:"firstname"`
 	LastName      string          `json:"lastName"`
-	BVN           int             `json:"bvn"`
+	BVN           string          `json:"bvn"`
 	AccountNumber int             `json:"accountNumber"`
 	Transactions  transactionType `json:"transactions"`
 }
 
-func newUser(firstName string, lastName string, bvn, accountNumber int, transaction transactionType) User {
-	return User{firstName, lastName, bvn, accountNumber, transaction}
+func (u User) newUser(firstName string, lastName string, bvn string, transaction string) User {
+	transactions, err := input("Enter transaction type: ")
+	if err != nil {
+		log.Fatal(err)
+	}
+	u.Transactions[time.Now()] = transactions
+	return User{firstName, lastName, bvn, randomdata.Number(11), transactions}
 }
 
 func input(prompt string) (string, error) {
@@ -40,7 +47,7 @@ func main() {
 	firstName, err := input("Enter first name: ")
 	lastName, err := input("Enter last name: ")
 	bvn, err := input("Enter BVN: ")
-	transaction, err := input("Enter transaction type: ")
 
+	newUser(firstName, lastName, bvn)
 	//fileop.WriteFileWithValue("file.json", "This is a new file")
 }
