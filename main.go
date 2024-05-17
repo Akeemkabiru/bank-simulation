@@ -5,49 +5,45 @@ import (
 	"errors"
 	"fmt"
 	"github.com/Pallinder/go-randomdata"
-	"log"
 	"os"
-	"strings"
 	"time"
 )
 
-type transactionType map[time.Time]string
-
 type User struct {
-	Firstname     string          `json:"firstname"`
-	LastName      string          `json:"lastName"`
-	BVN           string          `json:"bvn"`
-	AccountNumber int             `json:"accountNumber"`
-	Transactions  transactionType `json:"transactions"`
+	FirstName     string    `json:"firstName"`
+	LastName      string    `json:"lastName"`
+	Email         string    `json:"email"`
+	BVN           string    `json:"bvn"`
+	Age           int       `json:"json"`
+	AccountNumber string    `json:"accountNumber"`
+	createadAt    time.Time `json:"createdAt"`
 }
 
-func (u User) newUser(firstName string, lastName string, bvn string, transaction string) User {
-	transactions, err := input("Enter transaction type: ")
-	if err != nil {
-		log.Fatal(err)
-	}
-	u.Transactions[time.Now()] = transactions
-	return User{firstName, lastName, bvn, randomdata.Number(11), transactions}
+func newUser(firstName, lastName, email, bvn string, age int) User {
+	return User{FirstName: firstName, LastName: lastName, Email: email, BVN: bvn, Age: age, AccountNumber: randomdata.PhoneNumber(), createadAt: time.Now()}
 }
 
-func input(prompt string) (string, error) {
-	fmt.Printf(prompt)
+func userInput(prompt string) (string, error) {
+	fmt.Println(prompt)
 	reader := bufio.NewReader(os.Stdin)
 	text, err := reader.ReadString('\n')
 	if err != nil {
-		return "", err
+		fmt.Println("Error reading input:", err)
 	}
 	if prompt == "" {
-		return "", errors.New("input all the fields")
+		return "", errors.New("please all the field are required")
 	}
-	return strings.TrimSpace(text), nil
+	return text, nil
 }
 
 func main() {
-	firstName, err := input("Enter first name: ")
-	lastName, err := input("Enter last name: ")
-	bvn, err := input("Enter BVN: ")
-
-	newUser(firstName, lastName, bvn)
-	//fileop.WriteFileWithValue("file.json", "This is a new file")
+	firstName, err := userInput("what is your first name?")
+	lastName, err := userInput("what is your last name?")
+	email, err := userInput("what is your email?")
+	bvn, err := userInput("what is your BVN?")
+	age, err := userInput("what is your age ?")
+	fmt.Println(firstName, lastName, email, bvn, age)
+	if err != nil {
+		fmt.Println(err)
+	}
 }
