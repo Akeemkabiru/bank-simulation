@@ -23,7 +23,7 @@ type User struct {
 }
 
 func newUser(firstName, lastName, email, bvn string, age int) User {
-	return User{FirstName: firstName, LastName: lastName, Email: email, BVN: bvn, Age: age, AccountNumber: randomdata.PhoneNumber(), createadAt: time.Now()}
+	return User{FirstName: firstName, LastName: lastName, Email: email, BVN: bvn, Age: age, AccountNumber: randomdata.Digits(11), createadAt: time.Now()}
 }
 func (u User) getAccountNumber() string {
 	return u.AccountNumber
