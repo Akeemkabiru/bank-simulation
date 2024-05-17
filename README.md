@@ -12,8 +12,7 @@ This command-line tool simulates a simple bank with account creation functionali
 1. **Prerequisites:**
     * Go installed on your system (see [https://go.dev/doc/install](https://go.dev/doc/install) for installation instructions)
 2. **Download:**
-    * Clone this repository using
-    * Alternatively, you can download the zip file and extract it.
+    * Clone this repository
 3. **Build:**
     * Navigate to the project directory in your terminal.
     * Run `go build` to create the executable file (`bank-simulation`).
